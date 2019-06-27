@@ -37,7 +37,9 @@ set softtabstop=4
 " when indenting with '>', insert 4 spaces
 set shiftwidth=4
 
-" Javascript
+" html, css, Javascript
+autocmd FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType css setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 "UI CONFIG
