@@ -47,6 +47,8 @@ autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
 set number
 " show keystrokes
 set showcmd
+" show ruler
+set ruler
 " highlight current line, off by default, thanks
 set nocursorline
 set nocursorcolumn
