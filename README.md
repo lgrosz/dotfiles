@@ -23,9 +23,9 @@ Config files for various programs that I use on many platforms.
 
     **Theme**
 
-    - [`"powerlevel10k"`](https://github.com/romkatv/powerlevel10k) [^1]
+    - [`"powerlevel10k"`](https://github.com/romkatv/powerlevel10k) <sup>1</sup>
 
-- Default Editor: vim
+- Default Editor: [vim](https://www.vim.org/)
 
     **Plugins**
 
@@ -35,7 +35,7 @@ Config files for various programs that I use on many platforms.
 
 I've done my best to decouple these things from one another, but some dependencies remain. e.g. My p10k config requires the MesloLGS NF (or equivalent) font.
 
-[^1]: Requires the MeslosLGS NF font or equivalent
+<sup>1</sup>Requires the MeslosLGS NF font or equivalent
 
 ---
 
