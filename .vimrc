@@ -1,3 +1,18 @@
+" Install the vim-plug plugin manager
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" PLUGINS
+" Some stuff to take a look at
+" https://github.com/junegunn/vim-plug/wiki/tips#loading-plugins-manually
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/vim-plug'
+Plug 'preservim/nerdtree'
+call plug#end()
+
 " KEY MAPPINGS
 " leader remap , is better than \
 let mapleader=","
@@ -8,11 +23,22 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
+nnoremap sc :bd<CR>
+" more natural tab navigation
+nnoremap H :tabp<CR>
+nnoremap L :tabn<CR>
+nnoremap tc :bd<CR>
+nnoremap to :tabonly<CR>
 " move *visually* between vertical lines
 nnoremap j gj
 nnoremap k gk
 " turn on and off cursor highlighting
 nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+" NERDTree keymaps
+" open nerdtree with parent directory as root
+nnoremap <Leader>nt :NERDTreeToggle<CR>
+" open nerdtree with vcs root as root
+nnoremap <Leader>nv :NERDTreeVCS<CR>
 
 " COLORS
 " enable syntax processing
@@ -54,7 +80,7 @@ set nocursorline
 set nocursorcolumn
 " tab autocomplete for command menu
 set wildmenu
-" only redraw when needed (not during macros = faster macros)
+" only redraw when needed (not during macros) --> faster macros
 set lazyredraw
 " highlight maching [{()}]
 set showmatch
@@ -83,6 +109,3 @@ set foldmethod=indent
 " SCROLLING
 nnoremap <leader>s :set scrollbind!<CR>
 
-
-" plugins
-filetype plugin indent on
