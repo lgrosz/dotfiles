@@ -1,25 +1,41 @@
 # dotfiles
-Config fles for various programs that I use on many platforms.
+Config files for various programs that I use on many platforms.
 
 ## My preffered setup
 
-- Terminal/Terminal Emulator: (Hyper 3)[https://hyper.is/]
+- Terminal/Terminal Emulator: [Hyper 3](https://hyper.is/)
+
     **Plugins**
+
     - `'hyper-material-theme'`
+
     - `'hyper-border'`
+
     **Other**
-    - Font: "MesloLGS NF" [https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k]
-- Shell: (zsh)[http://zsh.sourceforge.net/] ((+ oh-my-zsh)[https://github.com/ohmyzsh/ohmyzsh])
+
+    - Font: ["MesloLGS NF"](https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k)
+
+- Shell: [zsh](http://zsh.sourceforge.net/) ([+ oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh))
+
     **Plugins**
+
     - `git`
+
     **Theme**
-    - (`"powerlevel10k"`)[https://github.com/romkatv/powerlevel10k]
+
+    - [`"powerlevel10k"`](https://github.com/romkatv/powerlevel10k) [^1]
+
 - Default Editor: vim
+
     **Plugins**
-    - (vim-plug)[https://github.com/junegunn/vim-plug]
-    - (NERDTree)[https://github.com/preservim/nerdtree]
+
+    - [vim-plug](https://github.com/junegunn/vim-plug)
+
+    - [NERDTree](https://github.com/preservim/nerdtree)
 
 I've done my best to decouple these things from one another, but some dependencies remain. e.g. My p10k config requires the MesloLGS NF (or equivalent) font.
+
+[^1]: Requires the MeslosLGS NF font or equivalent
 
 ---
 
