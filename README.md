@@ -1,5 +1,5 @@
 # dotfiles
-Config files for various programs that I use on many platforms.
+Config files for various programs that I use on many platforms. If I do not have a config file for something in my prefered setup, I use the default settings.
 
 ## My preffered setup
 
@@ -32,6 +32,10 @@ Config files for various programs that I use on many platforms.
     - [vim-plug](https://github.com/junegunn/vim-plug)
 
     - [NERDTree](https://github.com/preservim/nerdtree)
+
+    - [YouCompleteMe](https://github.com/ycm-core/YouCompleteMe)
+
+- Node Package Manager: [nvm](https://github.com/nvm-sh/nvm)
 
 I've done my best to decouple these things from one another, but some dependencies remain. e.g. My p10k config requires the MesloLGS NF (or equivalent) font.
 

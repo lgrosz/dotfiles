@@ -11,7 +11,13 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-plug'
 Plug 'preservim/nerdtree'
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --ts-completer --clangd-completer' }
+" Always load at the end
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
+
+" for devicons
+set encoding=UTF-8
 
 " KEY MAPPINGS
 " leader remap , is better than \
