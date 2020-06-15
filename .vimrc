@@ -42,10 +42,12 @@ nnoremap k gk
 " turn on and off cursor highlighting
 nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 " NERDTree keymaps
-" open nerdtree with parent directory as root
+" toggle/open nerdtree cwd as root
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 " open nerdtree with vcs root as root
 nnoremap <Leader>nv :NERDTreeVCS<CR>
+" open nerdtree with current file as root
+nnoremap <Leader>nc :NERDTree %<CR>
 " FZF keymaps
 nnoremap <Leader>o :FZF<CR>
 
