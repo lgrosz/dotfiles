@@ -10,6 +10,7 @@ endif
 " https://github.com/junegunn/vim-plug/wiki/tips#loading-plugins-manually
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-plug'
+Plug 'junegunn/fzf', { 'do': {-> fzf#install()} }
 Plug 'preservim/nerdtree'
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --ts-completer --clangd-completer' }
 " Always load at the end
@@ -45,6 +46,8 @@ nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 " open nerdtree with vcs root as root
 nnoremap <Leader>nv :NERDTreeVCS<CR>
+" FZF keymaps
+nnoremap <Leader>o :FZF<CR>
 
 " COLORS
 " enable syntax processing

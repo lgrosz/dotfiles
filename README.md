@@ -33,9 +33,13 @@ Config files for various programs that I use on many platforms. If I do not have
 
     - [NERDTree](https://github.com/preservim/nerdtree)
 
+    - [fzf](https://github.com/junegunn/fzf)
+
     - [YouCompleteMe](https://github.com/ycm-core/YouCompleteMe)
 
 - Node Package Manager: [nvm](https://github.com/nvm-sh/nvm)
+
+- Fuzzy File Finder: [fzf](https://github.com/junegunn/fzf)
 
 I've done my best to decouple these things from one another, but some dependencies remain. e.g. My p10k config requires the MesloLGS NF (or equivalent) font.
 
