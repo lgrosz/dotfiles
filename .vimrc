@@ -10,7 +10,9 @@ endif
 " https://github.com/junegunn/vim-plug/wiki/tips#loading-plugins-manually
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-plug'
-Plug 'junegunn/fzf', { 'do': {-> fzf#install()} }
+Plug 'junegunn/fzf', { 'do': {-> fzf#install()} } " this is regular fzf not the plugin, is this good style to do this here?
+Plug 'vim-airline/vim-airline'
+Plug 'airblade/vim-gitgutter'
 Plug 'preservim/nerdtree'
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --ts-completer --clangd-completer' }
 " Always load at the end
@@ -19,6 +21,9 @@ call plug#end()
 
 " for devicons
 set encoding=UTF-8
+
+" faster git gutter updating (may have performance repurcussions)
+set updatetime=100
 
 " KEY MAPPINGS
 " leader remap , is better than \
@@ -54,6 +59,13 @@ nnoremap <Leader>o :FZF<CR>
 " COLORS
 " enable syntax processing
 syntax enable
+" 256 colors in vim (export TERM='xterm-256color')
+set t_Co=256
+" my own colorscheme because I swear I cannot get anything to work the way I
+" want it to
+highlight SignColumn cterm=NONE ctermfg=NONE ctermbg=NONE guifg=#0D191F guibg=NONE
+
+
 " cursor line
 hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
@@ -62,7 +74,6 @@ highlight DiffAdd cterm=BOLD ctermfg=NONE ctermbg=DarkGreen
 highlight DiffDelete cterm=BOLD ctermfg=NONE ctermbg=DarkRed
 highlight DiffChange cterm=BOLD ctermfg=NONE ctermbg=Brown
 highlight DiffText cterm=BOLD ctermfg=NONE ctermbg=Magenta
-
 
 " SPACING
 " on pressing tab, insert 4 spaces
@@ -96,6 +107,20 @@ set lazyredraw
 " highlight maching [{()}]
 set showmatch
 
+" Airline Plugin Configuration
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.dirty='⚡'
 
 " SEARCHING
 " search as characters are entered
