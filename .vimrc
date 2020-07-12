@@ -10,10 +10,14 @@ endif
 " https://github.com/junegunn/vim-plug/wiki/tips#loading-plugins-manually
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-plug'
-Plug 'junegunn/fzf', { 'do': {-> fzf#install()} } " this is regular fzf not the plugin, is this good style to do this here?
 Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-dispatch'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'preservim/nerdtree'
+Plug 'jiangmiao/auto-pairs'
+Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --ts-completer --clangd-completer' }
 " Always load at the end
 Plug 'ryanoasis/vim-devicons'
@@ -55,6 +59,11 @@ nnoremap <Leader>nv :NERDTreeVCS<CR>
 nnoremap <Leader>nc :NERDTree %<CR>
 " FZF keymaps
 nnoremap <Leader>o :FZF<CR>
+" Ycm keymaps
+nnoremap gd :YcmCompleter GoToDefinition<CR>
+nnoremap gr :YcmCompleter GoToReferences<CR>
+" Dispatch commands
+nnoremap <Leader>dm :Dispatch grip -b<CR>
 
 " COLORS
 " enable syntax processing
@@ -92,7 +101,7 @@ autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 "UI CONFIG
 " set line numbers
-set number
+set number relativenumber
 " show keystrokes
 set showcmd
 " show ruler
@@ -122,6 +131,9 @@ let g:airline_symbols.linenr = '☰'
 let g:airline_symbols.maxlinenr = ''
 let g:airline_symbols.dirty='⚡'
 
+let g:airline#extentions#hunks#enabled=0
+let g:airline#extentions#branch#enabled=1
+
 " SEARCHING
 " search as characters are entered
 set incsearch
@@ -145,3 +157,6 @@ set foldmethod=indent
 " SCROLLING
 nnoremap <leader>s :set scrollbind!<CR>
 
+" netrw 
+set nocp
+filetype plugin on
