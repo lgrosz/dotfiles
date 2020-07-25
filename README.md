@@ -3,15 +3,7 @@ Config files for various programs that I use on many platforms. If I do not have
 
 ## My preffered setup
 
-- Terminal/Terminal Emulator: [Hyper 3](https://hyper.is/)
-
-    **Plugins**
-
-    - `'hyper-material-theme'`
-
-    - `'hyper-border'`
-
-    **Other**
+- Windows Terminal/Terminal Emulator: [Windows Terminal](https://github.com/microsoft/terminal) with Ubuntu WSL or [iTerm2](https://github.com/gnachman/iTerm2) for Mac
 
     - Font: ["MesloLGS NF"](https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k)
 
@@ -32,8 +24,6 @@ Config files for various programs that I use on many platforms. If I do not have
     - [vim-plug](https://github.com/junegunn/vim-plug)
 
     - [NERDTree](https://github.com/preservim/nerdtree)
-
-    - [fzf](https://github.com/junegunn/fzf)
 
     - [YouCompleteMe](https://github.com/ycm-core/YouCompleteMe)
 

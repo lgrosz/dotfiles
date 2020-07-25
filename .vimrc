@@ -29,6 +29,16 @@ set encoding=UTF-8
 " faster git gutter updating (may have performance repurcussions)
 set updatetime=100
 
+" replace ctrl p default with ag
+if executable('ag')
+    set grepprg=ag\ --nogroup\ --nocolor
+    let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
+    let g:ctrlp_use_caching=0
+endif
+
+" YCM settings
+let g:ycm_autoclose_preview_window_after_insertion=1
+
 " KEY MAPPINGS
 " leader remap , is better than \
 let mapleader=","
@@ -56,12 +66,13 @@ nnoremap <Leader>nt :NERDTreeToggle<CR>
 " open nerdtree with vcs root as root
 nnoremap <Leader>nv :NERDTreeVCS<CR>
 " open nerdtree with current file as root
-nnoremap <Leader>nc :NERDTree %<CR>
+nnoremap <Leader>nf :NERDTreeFind<CR>
 " FZF keymaps
 nnoremap <Leader>o :FZF<CR>
 " Ycm keymaps
 nnoremap gd :YcmCompleter GoToDefinition<CR>
 nnoremap gr :YcmCompleter GoToReferences<CR>
+nnoremap <Leader>f :YcmCompleter FixIt<CR>
 " Dispatch commands
 nnoremap <Leader>dm :Dispatch grip -b<CR>
 
@@ -98,6 +109,8 @@ set shiftwidth=4
 autocmd FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType css setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType typescript setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType json setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 "UI CONFIG
 " set line numbers
@@ -159,4 +172,5 @@ nnoremap <leader>s :set scrollbind!<CR>
 
 " netrw 
 set nocp
-filetype plugin on
+filetype off
+filetype plugin indent on
