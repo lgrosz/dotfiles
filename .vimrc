@@ -16,16 +16,19 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-dispatch'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'preservim/nerdtree'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'jiangmiao/auto-pairs'
-Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'yuezk/vim-js'
+ 
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --ts-completer --clangd-completer' }
 " Always load at the end
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " for devicons
-set encoding=UTF-8
-
+"set encoding=UTF-8
+"
 " faster git gutter updating (may have performance repurcussions)
 set updatetime=100
 
@@ -85,7 +88,6 @@ set t_Co=256
 " want it to
 highlight SignColumn cterm=NONE ctermfg=NONE ctermbg=NONE guifg=#0D191F guibg=NONE
 
-
 " cursor line
 hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
@@ -94,6 +96,7 @@ highlight DiffAdd cterm=BOLD ctermfg=NONE ctermbg=DarkGreen
 highlight DiffDelete cterm=BOLD ctermfg=NONE ctermbg=DarkRed
 highlight DiffChange cterm=BOLD ctermfg=NONE ctermbg=Brown
 highlight DiffText cterm=BOLD ctermfg=NONE ctermbg=Magenta
+
 
 " SPACING
 " on pressing tab, insert 4 spaces
@@ -111,6 +114,9 @@ autocmd FileType css setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType typescript setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType json setlocal tabstop=2 softtabstop=2 shiftwidth=2
+
+" so I don't overwrite the given filetype...
+autocmd BufRead,BufNewFile *.tsx,*.jsx setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 "UI CONFIG
 " set line numbers
@@ -172,5 +178,6 @@ nnoremap <leader>s :set scrollbind!<CR>
 
 " netrw 
 set nocp
+syntax on
 filetype off
 filetype plugin indent on
