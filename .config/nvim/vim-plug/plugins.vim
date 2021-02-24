@@ -19,6 +19,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   " More language support
   Plug 'HerringtonDarkholme/yats.vim'
+  " Markdown
+  Plug 'plasticboy/vim-markdown'
   " FZF and worflow
   Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
   Plug 'junegunn/fzf.vim'
