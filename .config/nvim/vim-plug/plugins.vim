@@ -29,6 +29,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   " Source control
+  Plug 'tpope/vim-fugitive'
   Plug 'airblade/vim-gitgutter'
   " Airline
   Plug 'vim-airline/vim-airline'
