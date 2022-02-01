@@ -21,6 +21,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'HerringtonDarkholme/yats.vim'
   " Markdown
   Plug 'plasticboy/vim-markdown'
+  Plug 'junegunn/vim-easy-align'
   " FZF and worflow
   Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
   Plug 'junegunn/fzf.vim'
