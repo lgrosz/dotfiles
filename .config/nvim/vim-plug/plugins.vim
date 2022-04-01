@@ -19,6 +19,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   " More language support
   Plug 'HerringtonDarkholme/yats.vim'
+  " Tags
+  Plug 'ludovicchabant/vim-gutentags'
   " Markdown
   Plug 'plasticboy/vim-markdown'
   Plug 'junegunn/vim-easy-align'
