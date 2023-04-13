@@ -16,3 +16,13 @@ Install `zsh-autocompletions` to enable auto-completion.
 brew install zsh-autocompletions
 ```
 
+## .oh-my-zsh.zsh
+
+Requires [oh my zsh](https://ohmyz.sh). But install it as follows...
+
+```
+git clone https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh
+```
+
+`.oh-my-zsh.zsh` will do the rest. No need to run the install script.
+
