@@ -1,32 +1,23 @@
 return {
   'hrsh7th/nvim-cmp',
   dependencies = {
-    -- Snippet Engine & its associated nvim-cmp source
-    'L3MON4D3/LuaSnip',
-    'saadparwaiz1/cmp_luasnip',
+    -- Buffer
+    'hrsh7th/cmp-buffer',
 
-    -- Adds LSP completion capabilities
+    -- Command line
+    'hrsh7th/cmp-cmdline',
+    'dmitmel/cmp-cmdline-history',
+
+    -- LSP
     'hrsh7th/cmp-nvim-lsp',
 
-    -- Adds a number of user-friendly snippets
-    'rafamadriz/friendly-snippets',
-
-    -- Tags
+    -- Misc
     'quangnguyen30192/cmp-nvim-tags',
+    'petertriho/cmp-git',
   },
   config = function ()
-    local luasnip = require 'luasnip'
-    require('luasnip.loaders.from_vscode').lazy_load()
-    luasnip.config.setup {}
-
     local cmp = require('cmp')
     cmp.setup {
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
-      },
-
       mapping = cmp.mapping.preset.insert {
         ['<C-n>'] = cmp.mapping.select_next_item(),
         ['<C-p>'] = cmp.mapping.select_prev_item(),
@@ -40,8 +31,6 @@ return {
         ['<Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
-          elseif luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
           else
             fallback()
           end
@@ -49,18 +38,50 @@ return {
         ['<S-Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
-          elseif luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
           else
             fallback()
           end
         end, { 'i', 's' }),
       },
       sources = {
+        { name = 'buffer' },
         { name = 'nvim_lsp' },
-        { name = 'luasnip' },
         { name = 'tags' },
       },
     }
+
+    -- Git commit completion
+    cmp.setup.filetype('gitcommit', {
+      sources = {
+        { name = 'git' },
+        { name = 'buffer' },
+      }
+    })
+
+    -- C/C++ completion
+    cmp.setup.filetype({ "c", "cpp" }, {
+      sources = {
+        { name = "buffer-lines" },
+      }
+    })
+
+    -- Search completion
+    cmp.setup.cmdline({ '/', '?' }, {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = {
+        { name = 'buffer' },
+        { name = 'cmdline_history' },
+      }
+    })
+
+    -- Command completion
+    cmp.setup.cmdline(':', {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = {
+        { name = 'path' },
+        { name = 'cmdline' },
+        { name = 'cmdline_history' },
+      }
+    })
   end
 }
