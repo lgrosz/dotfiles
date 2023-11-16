@@ -3,6 +3,7 @@ return {
   dependencies = {
     -- Buffer
     'hrsh7th/cmp-buffer',
+    'amarakon/nvim-cmp-buffer-lines',
 
     -- Command line
     'hrsh7th/cmp-cmdline',
@@ -61,7 +62,10 @@ return {
     -- C/C++ completion
     cmp.setup.filetype({ "c", "cpp" }, {
       sources = {
+        { name = 'nvim_lsp' },
+        { name = 'tags' },
         { name = "buffer-lines" },
+        { name = 'buffer' },
       }
     })
 
