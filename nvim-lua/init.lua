@@ -34,7 +34,7 @@ end
 
 -- Install plugins
 require('lazy').setup({
-	{ import = 'custom.plugins' },
+	{ import = 'plugins' },
 })
 
 map('i', 'fd', '<Esc>')
