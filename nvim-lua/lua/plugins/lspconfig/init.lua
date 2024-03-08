@@ -5,6 +5,7 @@ return {
     require("plugins.lspconfig.lua-language-server")
   end,
   dependencies = {
+    "folke/neodev.nvim",
     "williamboman/mason-lspconfig.nvim",
   },
 }
