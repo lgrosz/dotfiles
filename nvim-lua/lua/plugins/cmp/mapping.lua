@@ -11,7 +11,7 @@ mapping.preset = {
   -- Next match
   ["<C-n>"] = cmp.mapping(function()
     if cmp.visible() then
-      cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+      cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
     else
       cmp.complete()
     end
@@ -19,7 +19,7 @@ mapping.preset = {
   -- Previous match
   ["<C-p>"] = cmp.mapping(function()
     if cmp.visible() then
-      cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+      cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
     else
       cmp.complete()
     end
