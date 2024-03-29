@@ -1,6 +1,9 @@
 return {
   'stevearc/oil.nvim',
   config = function ()
-    require("oil").setup()
+    local oil = require("oil")
+
+    -- keymaps
+    vim.keymap.set('n', '<leader>nf', oil.toggle_float, { desc = '[N]avigate [F]iles' })
   end
 }
