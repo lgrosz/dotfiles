@@ -5,5 +5,7 @@ return {
 
     -- keymaps
     vim.keymap.set('n', '<leader>nf', oil.toggle_float, { desc = '[N]avigate [F]iles' })
+
+    oil.setup()
   end
 }
