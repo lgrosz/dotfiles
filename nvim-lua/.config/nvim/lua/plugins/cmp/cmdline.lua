@@ -12,7 +12,10 @@ return {
           option = {
             ignore_cmds = { "Man", "!" }
           }
-        }
+        },
+        {
+          name = "cmdline_history"
+        },
       },
       experimental = {
         ghost_text = true,
