@@ -7,6 +7,6 @@ Use GNU Stow
 
 For example...
 ```sh
-$ stow -t ~ tmux
-$ stow -t ~ nvim-lua
+$ stow -t ~ --dotfiles tmux
+$ stow -t ~ --dotfiles nvim-lua
 ```

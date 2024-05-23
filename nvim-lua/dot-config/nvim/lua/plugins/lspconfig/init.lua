@@ -5,6 +5,7 @@ return {
     require("plugins.lspconfig.lua-language-server")
     require("plugins.lspconfig.cmake-language-server")
     require("plugins.lspconfig.dockerfile-language-server")
+    require("plugins.lspconfig.mesonlsp")
   end,
   dependencies = {
     "folke/neodev.nvim",
