@@ -9,7 +9,6 @@ return {
     require("plugins.lspconfig.pyright")
   end,
   dependencies = {
-    "folke/neodev.nvim",
     "williamboman/mason-lspconfig.nvim",
   },
 }
