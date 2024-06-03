@@ -11,6 +11,7 @@ return {
       },
       mapping = require("plugins.cmp.mapping").preset,
       sources = {
+        { name = "lazydev", group_index = 0 },
         { name = "nvim_lsp" },
         { name = "buffer" },
       },
@@ -28,5 +29,6 @@ return {
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-cmdline',
     'dmitmel/cmp-cmdline-history',
+    "folke/lazydev.nvim",
   },
 }

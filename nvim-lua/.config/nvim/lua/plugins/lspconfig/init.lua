@@ -7,7 +7,6 @@ return {
     require("plugins.lspconfig.dockerfile-language-server")
   end,
   dependencies = {
-    "folke/neodev.nvim",
     "williamboman/mason-lspconfig.nvim",
   },
 }
