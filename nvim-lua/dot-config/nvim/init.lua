@@ -83,3 +83,10 @@ vim.api.nvim_create_autocmd("TermClose", {
        vim.cmd("bdelete")
     end
 })
+
+vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+  pattern = {"*.pg"},
+  callback = function()
+    vim.bo.filetype = "sql"
+  end
+})
