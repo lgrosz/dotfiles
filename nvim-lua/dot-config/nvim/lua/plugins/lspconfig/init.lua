@@ -7,6 +7,7 @@ return {
     require("plugins.lspconfig.dockerfile-language-server")
     require("plugins.lspconfig.mesonlsp")
     require("plugins.lspconfig.pyright")
+    require("plugins.lspconfig.ts_ls")
   end,
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
