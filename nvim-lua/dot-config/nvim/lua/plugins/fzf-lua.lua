@@ -17,6 +17,8 @@ return {
     vim.keymap.set('n', '<leader>sh:', fzf_lua.search_history, { desc = '[S]earch [H]istory of searches' })
 
     vim.keymap.set("n", "<leader>gf", fzf_lua.git_files, { silent = true, desc = 'Search [G]it [F]iles' })
+
+    fzf_lua.register_ui_select()
   end,
 }
 
