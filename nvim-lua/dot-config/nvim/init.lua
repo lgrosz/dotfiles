@@ -128,3 +128,77 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
     vim.bo.filetype = "sql"
   end
 })
+
+-- LLM commit messages
+-- File: lua/generate_commit_message.lua
+local M = {}
+
+-- You can configure your API endpoint and key here
+local api_url = "https://api.openai.com/v1/chat/completions"
+local api_key = os.getenv("OPENAI_API_KEY") -- set this environment variable securely
+
+local function get_git_diff()
+  -- Get the staged git diff
+  local handle = io.popen("git diff --cached")
+  if not handle then return nil end
+
+  local result = handle:read("*a")
+  handle:close()
+  return result
+end
+
+local function generate_commit_message(diff, callback)
+  local curl = require("plenary.curl")
+
+  local body = {
+    model = "gpt-4", -- or "gpt-3.5-turbo"
+    messages = {
+      { role = "system", content = "You are a helpful assistant that writes concise git commit messages based on diffs." },
+      { role = "user", content = "Generate a commit message for the following diff:\n" .. diff },
+    },
+    temperature = 0.5,
+  }
+
+  curl.post(api_url, {
+    headers = {
+      ["Content-Type"] = "application/json",
+      ["Authorization"] = "Bearer " .. api_key,
+    },
+    body = vim.fn.json_encode(body),
+    callback = function(response)
+      if response.status ~= 200 then
+        vim.notify("Failed to generate commit message: " .. (response.body or "Unknown error"), vim.log.levels.ERROR)
+        return
+      end
+
+      local parsed = vim.fn.json_decode(response.body)
+      local message = parsed.choices[1].message.content
+
+      if callback then
+        callback(message)
+      end
+    end
+  })
+end
+
+local function insert_commit_message(message)
+  vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(message, "\n"))
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "gitcommit",
+  callback = function()
+    vim.notify("Hello world!", vim.log.levels.WARN)
+    local diff = get_git_diff()
+
+    if not diff or diff == "" then
+      vim.notify("No staged changes to generate commit message from.", vim.log.levels.WARN)
+      return
+    end
+
+    generate_commit_message(diff, function(message)
+      insert_commit_message(message)
+      vim.notify("Generated commit message inserted.", vim.log.levels.INFO)
+    end)
+  end,
+})
