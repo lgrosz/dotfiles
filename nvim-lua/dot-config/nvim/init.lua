@@ -71,11 +71,49 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
     vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-    vim.keymap.set('n', '<space>f', function()
+    vim.keymap.set('n', '<leader>f', function()
       vim.lsp.buf.format { async = true }
     end, opts)
+
+    vim.api.nvim_set_keymap('v', '<leader>f', ':lua vim.lsp.buf.format({ range = {["start"] = vim.api.nvim_buf_get_mark(0, "<"), ["end"] = vim.api.nvim_buf_get_mark(0, ">")} })<CR>', { noremap = true, silent = true })
   end,
 })
+
+local function get_changed_lines()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local file = vim.api.nvim_buf_get_name(bufnr)
+  if file == "" then return nil end -- Unsaved buffer
+
+  local cmd = string.format("git diff --unified=0 %s", vim.fn.shellescape(file))
+  local output = vim.fn.systemlist(cmd)
+  if vim.v.shell_error ~= 0 then return nil end
+
+  local ranges = {}
+  for _, line in ipairs(output) do
+    local start, count = line:match("@@ %-%d+,%d+ %+(%d+),?(%d*) @@")
+    if start then
+      start = tonumber(start)
+      count = count ~= "" and tonumber(count) or 1
+      table.insert(ranges, { start, start + count - 1 })
+    end
+  end
+
+  return ranges
+end
+
+local function format_changed_lines()
+  local ranges = get_changed_lines()
+  if not ranges or #ranges == 0 then return end
+
+  for _, range in ipairs(ranges) do
+    vim.lsp.buf.format({
+      range = { start = { range[1], 0 }, ["end"] = { range[2], 0 } },
+      async = true,
+    })
+  end
+end
+
+vim.api.nvim_create_user_command("FormatChanged", format_changed_lines, {})
 
 -- Close buffer after terminal exists
 vim.api.nvim_create_autocmd("TermClose", {
