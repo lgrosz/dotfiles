@@ -1,1 +1,2 @@
-require("lspconfig").mesonlsp.setup({ })
+vim.lsp.config("mesonlsp", { })
+vim.lsp.enable("mesonlsp")

@@ -62,6 +62,8 @@ if #drivers > 0 then
 end
 
 
-require("lspconfig").clangd.setup({
+vim.lsp.config("clangd", {
   cmd = cmd,
 })
+
+vim.lsp.enable("clangd")
