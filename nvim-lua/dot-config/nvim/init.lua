@@ -84,3 +84,24 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
     vim.bo.filetype = "sql"
   end
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "typescript", "typescriptreact" },
+  callback = function()
+    local package_json = vim.fn.findfile("package.json", ".;")
+    if package_json == "" then return end
+
+    local file = io.open(package_json, "r")
+    if not file then return end
+
+    local content = file:read("*a")
+    file:close()
+
+    local ok, package = pcall(vim.json.decode, content)
+    if not ok or not package.scripts or not package.scripts.build then return end
+
+    vim.opt_local.makeprg = "pnpm build"
+
+    vim.notify("Set makeprg to 'pnpm build'.")
+  end
+})
