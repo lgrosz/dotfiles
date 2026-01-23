@@ -23,21 +23,12 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Global helper functions
-function map(mode, lhs, rhs, opts)
-  local options = { noremap=true, silent=true }
-  if opts then
-    options = vim.tbl_extend('force', options, opts)
-  end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
 -- Install plugins
 require('lazy').setup({
 	{ import = 'plugins' },
 })
 
-map('i', 'fd', '<Esc>')
+vim.keymap.set('i', 'fd', '<Esc>')
 
 vim.api.nvim_create_user_command('Scratch', require'tools'.makeScratch, {})
 vim.opt.splitright = true
