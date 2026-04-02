@@ -62,13 +62,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- Close buffer after terminal exists
-vim.api.nvim_create_autocmd("TermClose", {
-    callback = function()
-       vim.cmd("bdelete")
-    end
-})
-
 vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
   pattern = {"*.pg"},
   callback = function()
