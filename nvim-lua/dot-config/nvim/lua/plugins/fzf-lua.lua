@@ -5,7 +5,9 @@ return {
   config = function()
     -- calling `setup` is optional for customization
     local fzf_lua = require("fzf-lua")
-    fzf_lua.setup({ })
+    fzf_lua.setup({
+      fzf_colors = true,
+    })
 
     -- keymaps
     vim.keymap.set('n', '<leader>sf', fzf_lua.files, { desc = '[S]earch [F]iles' })
