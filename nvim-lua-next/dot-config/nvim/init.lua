@@ -3,6 +3,7 @@ vim.g.maplocalleader = ','
 
 vim.pack.add({
   'https://github.com/ibhagwan/fzf-lua',
+  'https://github.com/tpope/vim-fugitive',
 })
 
 local fzf_lua = require('fzf-lua')
