@@ -1,6 +1,3 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ','
-
 -- Download plugins. If needed, plugins are configured in
 -- plugin/30-plugins.lua
 vim.pack.add({
