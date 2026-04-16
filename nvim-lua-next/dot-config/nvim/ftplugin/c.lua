@@ -1,5 +1,7 @@
 require('nvim-treesitter').install('c')
 
+vim.lsp.enable('clangd')
+
 if vim.treesitter.language.add('c') then
   vim.treesitter.start()
 
