@@ -32,6 +32,8 @@ vim.keymap.set('i', 'fd', '<Esc>')
 
 vim.api.nvim_create_user_command('Scratch', require'tools'.makeScratch, {})
 vim.opt.splitright = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Diagnostic keymaps
 -- See :diagnostic-defaults
