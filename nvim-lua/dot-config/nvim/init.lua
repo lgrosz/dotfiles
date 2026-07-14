@@ -63,3 +63,12 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
     vim.bo.filetype = "sql"
   end
 })
+
+-- Reclaim horizontal space in diff windows (e.g. fugitive's `dv`): the diff
+-- highlighting already shows the changes, so the sign column is just noise.
+vim.api.nvim_create_autocmd("OptionSet", {
+  pattern = "diff",
+  callback = function()
+    vim.opt_local.signcolumn = vim.v.option_new == "1" and "no" or "auto"
+  end
+})
