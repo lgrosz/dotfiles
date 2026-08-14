@@ -1,0 +1,1 @@
+require('ftsetup').indent('qmljs')
