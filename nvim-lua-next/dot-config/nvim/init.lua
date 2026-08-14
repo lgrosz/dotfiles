@@ -14,6 +14,8 @@ vim.pack.add({
   'https://github.com/nvim-treesitter/nvim-treesitter',
   'https://github.com/ibhagwan/fzf-lua',
   'https://github.com/tpope/vim-abolish',
+  'https://github.com/tpope/vim-dadbod',
+  'https://github.com/tpope/vim-dispatch',
   'https://github.com/tpope/vim-fugitive',
   'https://github.com/tpope/vim-surround',
 })
