@@ -8,3 +8,10 @@ vim.keymap.set('n', '<leader>sh:', function() require('fzf-lua').command_history
 vim.keymap.set('n', '<leader>sh/', function() require('fzf-lua').search_history() end, { desc = '[S]earch [H]istory of searches' })
 vim.keymap.set('n', '<leader>gf', function() require('fzf-lua').git_files() end, { desc = 'Search [G]it [F]iles' })
 
+-- Escape insert mode
+vim.keymap.set('i', 'fd', '<Esc>', { desc = 'Escape insert mode' })
+
+-- Diagnostic keymaps
+-- See :diagnostic-defaults
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
