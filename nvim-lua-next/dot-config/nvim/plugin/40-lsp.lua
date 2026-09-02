@@ -4,12 +4,14 @@
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
   callback = function(ev)
-    -- native LSP completion. autotrigger only fires on the server's
-    -- triggerCharacters ('.', '->', ...); adding 'o' to 'complete' also feeds
-    -- 'omnifunc' -- and so the LSP -- into 'autocomplete', which otherwise
-    -- only offers buffer and tag words. See :h ins-autocompletion, :h 'complete'.
+    -- Let the LSP drive its own menu via autotrigger, and leave 'complete'
+    -- alone. Adding "o" routes the LSP through 'omnifunc' as an 'autocomplete'
+    -- source, but vim.lsp.omnifunc answers asynchronously: it returns -2 and
+    -- calls vim.fn.complete() when the reply lands. That fights the
+    -- 'autocomplete' collection cycle for ownership of the menu, and the list
+    -- flickers away as you type. See :h ins-autocompletion, :h lsp-completion,
+    -- and neovim/neovim#40060 on how the two paths do not yet harmonise.
     vim.lsp.completion.enable(true, ev.data.client_id, ev.buf, { autotrigger = true })
-    vim.opt_local.complete:append('o')
 
     -- keymaps (override built-in gd motion)
     local opts = { buffer = ev.buf }
