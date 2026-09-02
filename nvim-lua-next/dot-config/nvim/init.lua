@@ -13,8 +13,8 @@ vim.api.nvim_create_autocmd('PackChanged', { callback = function(ev)
   end
 end })
 
--- Download plugins. If needed, plugins are configured in
--- plugin/30-plugins.lua
+-- Download plugins. Each plugin is configured, with its mappings, in
+-- plugin/30-plugins/<plugin>.lua
 vim.pack.add({
   'https://github.com/neovim/nvim-lspconfig',
   'https://github.com/nvim-treesitter/nvim-treesitter',

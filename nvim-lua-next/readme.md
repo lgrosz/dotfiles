@@ -55,3 +55,27 @@ forces a second set of quotes. A bare `require('fzf-lua').files` would load the
 plugin when the mapping is *defined*, which defeats the point.
 
 Every mapping gets a `desc`.
+
+### Layout: one file per plugin, numbered only where order matters
+
+`plugin/` is sourced as `:runtime! plugin/**/*.{vim,lua}` (`:h load-plugins`),
+alphabetically *per directory* -- so a subdirectory is sourced in the position
+its own name sorts to, and needs no loader.
+
+The top-level `NN-` prefixes order the phases. `plugin/30-plugins/` keeps its
+number so the plugin phase stays in the slot it has always occupied; an
+unprefixed `plugin/plugins/` would sort after `70-statusline.lua`, because
+digits sort before letters.
+
+Inside that directory the files are unnumbered -- `fzf-lua.lua`,
+`gitsigns.lua`, `oil.lua` -- because nothing there depends on load order, and a
+number implies a constraint that does not exist:
+
+- fzf-lua's `fzf_colors = true` resolves per picker, not at setup, so it does
+  not need the colourscheme to be set first.
+- gitsigns re-links its highlights from a `ColorScheme` autocmd.
+- oil sets `g:loaded_netrw` at setup, and clears netrw's augroup if netrw was
+  already loaded, so either order works. Every `plugin/` file runs at startup
+  step 11, well before windows are opened at step 17.
+
+Add a number inside only when a real dependency appears, and say what it is.
