@@ -4,6 +4,9 @@ require('fzf-lua').setup({
   fzf_colors = true,
 })
 
+-- Use fzf-lua for vim.ui.select (code actions, z= in plugin/20-keymaps.lua, ...)
+require('fzf-lua').register_ui_select()
+
 -- Search for things
 vim.keymap.set('n', '<leader>sf', function() require('fzf-lua').files() end, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sb', function() require('fzf-lua').buffers() end, { desc = '[S]earch [B]uffers' })
