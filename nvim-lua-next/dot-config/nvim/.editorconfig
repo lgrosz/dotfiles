@@ -1,0 +1,13 @@
+# Lives beside init.lua, not at the package root, so it is stowed with the
+# rest of dot-config/nvim: Neovim resolves .editorconfig from the buffer's
+# path without following symlinks, so a file at the package root would be
+# invisible when editing this config through ~/.config/nvim. See :h editorconfig.
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
