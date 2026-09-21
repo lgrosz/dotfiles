@@ -13,6 +13,35 @@ vim.api.nvim_create_autocmd('PackChanged', { callback = function(ev)
   end
 end })
 
+-- Keep terminal background synced to neovim background, via OSC 11.
+--
+-- tmux swallows OSC 11 outright -- inside a session the only one that reaches
+-- the outer terminal is tmux's own `OSC 11 ?` query -- so under $TMUX the
+-- sequence has to travel in tmux's DCS passthrough, with every ESC in the
+-- payload doubled. That needs `set -g allow-passthrough on` in tmux.conf;
+-- without it tmux drops the wrapper too.
+local function osc(seq)
+  if vim.env.TMUX then
+    seq = '\027Ptmux;' .. seq:gsub('\027', '\027\027') .. '\027\\'
+  end
+  io.write(seq)
+end
+
+local function sync_term_bg()
+  local normal = vim.api.nvim_get_hl(0, { name = 'Normal' })
+  if not normal.bg then return end
+  osc(string.format('\027]11;#%06x\027\\', normal.bg))
+end
+
+-- ColorScheme alone is not enough: the default colorscheme fires no such
+-- event, so a config that never calls :colorscheme would never sync.
+vim.api.nvim_create_autocmd({ 'UIEnter', 'ColorScheme' }, { callback = sync_term_bg })
+
+-- OSC 111 resets to the terminal's own configured background.
+vim.api.nvim_create_autocmd('UILeave', {
+  callback = function() osc('\027]111\027\\') end,
+})
+
 -- Download plugins. Each plugin is configured, with its mappings, in
 -- plugin/30-plugins/<plugin>.lua
 vim.pack.add({
