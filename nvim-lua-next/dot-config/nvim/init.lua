@@ -1,3 +1,9 @@
+-- Set before vim.pack.add: plugins loaded there define their mappings
+-- immediately, and <Leader> is resolved when a mapping is defined, not
+-- when it is used. See :h mapleader.
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ','
+
 -- update nvim-treesitter parsers
 vim.api.nvim_create_autocmd('PackChanged', { callback = function(ev)
   local name, kind = ev.data.spec.name, ev.data.kind
